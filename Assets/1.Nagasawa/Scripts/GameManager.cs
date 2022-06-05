@@ -6,14 +6,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Tooltip("インスタンスを取得しやすいように")] public static GameManager Instance;
-    [Tooltip("false:Player1 true:Player2 各勝敗")] bool _isWinPlayer;
+
     [Tooltip("各プレイヤーのアクション")] bool[] _isAction = new bool[2];
-    [Tooltip("")] float _attackTime; 
-    [Tooltip("先行か後攻か")] PlayerMode[] _playerModes;
+    [Tooltip("先行か後攻か")] PlayerMode[] _playerModes = new PlayerMode[] {PlayerMode.Attack, PlayerMode.Protect};
     [Tooltip("攻撃するプレイヤーの番号")] int _attackPlayerNum;
     [Tooltip("防御するプレイヤーの番号")] int _protectPlayerNum;
-    float _time;
-    bool a;
+    [Tooltip("false:Player1 true:Player2 各勝敗")] bool _isWinPlayer;
+
+    [Tooltip("攻撃可能時間"), SerializeField] float _attackTime = 1.0f; 
+    [Tooltip("攻撃時間")]　float _time;
+
+    [Tooltip("ゲームスタートしたか")] bool _isGameStart;
+    [Tooltip("ゲームの最初かどうか")] bool _isGameFirst;
+
+    [SerializeField] WinnerUI _winnerUI;
+    [SerializeField] TimeCountController _tcc;
+
+    //カプセル化
+    public bool IsGameStart => _isGameStart;
+    public bool IsGameFirst => _isGameFirst;
 
     void Awake()
     {
@@ -23,13 +34,37 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("インスタンス複数のため破棄");
             Destroy(this.gameObject);
         }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    public void ChangeGameStart(bool flag)
+    {
+        _isGameStart = flag;
+    }
+
+    public void ChangeGameFirst(bool flag)
+    {
+        _isGameFirst = flag;
+    }
+
+    public void SetUp()
+    {
+        PlayerActionClear();
+        ChangePlayerMode();
+        _winnerUI.Clear();
+        _tcc.enabled = true;
+        _tcc.Start();
+        Debug.Log("Player" + _attackPlayerNum + 1 + ":攻撃, Player" + _protectPlayerNum + 1 + ":防衛");
     }
 
     /// <summary>
     /// Playerのアクションを受け取る
     /// false:Player1 true:Player2
     /// </summary>
-    public void PlayerAcrion(bool isPlayer)
+    public void PlayerAction(bool isPlayer)
     {
         if(!isPlayer)
         {
@@ -57,15 +92,21 @@ public class GameManager : MonoBehaviour
     {
         if(_isAction[_attackPlayerNum])
         {
+            Debug.Log("AttackNow");
             _time += Time.deltaTime;
             if(_isAction[_protectPlayerNum])
             {
-                _isWinPlayer = false;
+                Debug.Log("ProtectNow");
+                _isWinPlayer = true;
+                ChangeGameStart(false);
+                _winnerUI.IsWinnerUI(_isWinPlayer);
             }
             
             if(_time >= _attackTime)
             {
-                _isWinPlayer = true;
+                _isWinPlayer = false;
+                ChangeGameStart(false);
+                _winnerUI.IsWinnerUI(_isWinPlayer);
             }
         }
     }

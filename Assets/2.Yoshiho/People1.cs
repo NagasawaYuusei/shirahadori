@@ -6,8 +6,10 @@ public class People1 : MonoBehaviour
 {
     [SerializeField] int _playerNum;
 
-    private void Update()
+    void Update()
     {
+        if (!GameManager.Instance.IsGameStart)
+            return;
         Active();
     }
     /// <summary>
@@ -17,14 +19,14 @@ public class People1 : MonoBehaviour
     {
         if (Input.GetButtonDown("Player" + _playerNum + "Active"))
         {
-            Debug.Log("Player" + _playerNum +"‚ªAttack‚µ‚Ü‚µ‚½");
+            Debug.Log("Player" + _playerNum +"‚ªƒAƒNƒVƒ‡ƒ“‚µ‚Ü‚µ‚½");
             if(_playerNum == 1)
             {
-                GameManager.Instance.PlayerAcrion(false);
+                GameManager.Instance.PlayerAction(false);
             }
             else
             {
-                GameManager.Instance.PlayerAcrion(true);
+                GameManager.Instance.PlayerAction(true);
             }
         }
     }
