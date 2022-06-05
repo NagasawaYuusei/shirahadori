@@ -762,7 +762,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1688943074}
         m_TargetAssemblyTypeName: TimeCountController, Assembly-CSharp
-        m_MethodName: TestStart
+        m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
