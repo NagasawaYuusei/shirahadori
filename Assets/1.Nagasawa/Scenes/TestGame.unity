@@ -361,7 +361,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2aa31ebbb6d72d94d835ebaf94475771, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e106719efec646a125cf50cf8c642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackTime: 1
+  _attackTime: 0.3
   _winnerUI: {fileID: 1445694672}
   _tcc: {fileID: 1445694671}
 --- !u!4 &776115547
@@ -760,7 +760,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2aa31ebbb6d72d94d835ebaf94475771, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2aa31ebbb6d72d94d835ebaf94475771, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
