@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         }
         else if(_isAction[_protectPlayerNum])
         {
+            Debug.Log("ProtectPlayerMiss");
             _isWinPlayer = false;
             _playerMiss = true;
         }
