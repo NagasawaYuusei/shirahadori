@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
             
             if(_time >= _attackTime)
             {
+                Debug.Log("OverTime");
                 _isWinPlayer = false;
             }
         }
