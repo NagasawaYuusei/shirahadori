@@ -10,5 +10,9 @@ public class InGameSystem : MonoBehaviour
         {
             GameManager.Instance.WhichPlayerWin();
         }
+        else
+        {
+            //GameManager.Instance.
+        }
     }
 }

@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WinnerUI : MonoBehaviour
 {
     [SerializeField] Text _winnerText;
+    [SerializeField] string[] _winPlayerText;
 
     void Start()
     {
@@ -26,11 +25,11 @@ public class WinnerUI : MonoBehaviour
     {
         if(!isWinner)
         {
-            _winnerText.text = "Player1 Win";
+            _winnerText.text = _winPlayerText[0];
         }
         else
         {
-            _winnerText.text = "Player2 Win";
+            _winnerText.text = _winPlayerText[1];
         }
     }
 }
