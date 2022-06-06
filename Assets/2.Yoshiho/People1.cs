@@ -6,7 +6,7 @@ public class People1 : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsGameStart)
+        if (!GameManager.Instance.IsNowGame)
             return;
         Active();
     }

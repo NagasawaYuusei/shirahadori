@@ -50,7 +50,7 @@ public class TimeCountController : MonoBehaviour
                 _isGameStart = false;
                 _isFinishCount = false;
 
-                GameManager.Instance.ChangeGameStart(true);
+                GameManager.Instance.ChangeNowGame(true);
                 GameManager.Instance.PlayerModeNumSet();
             }
         }
