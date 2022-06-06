@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [Tooltip("攻撃時間")]　float _time;
 
     [Tooltip("ゲームスタートしたか")] bool _isGameStart;
-    [Tooltip("ゲームの最初かどうか")] bool _isGameFirst;
 
     [SerializeField] WinnerUI _winnerUI;
     [SerializeField] TimeCountController _tcc;
@@ -26,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     //カプセル化
     public bool IsGameStart => _isGameStart;
-    public bool IsGameFirst => _isGameFirst;
+    public bool IsWinPlayer => _isWinPlayer;
 
     void Awake()
     {
@@ -42,14 +41,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ゲーム開始時のflag情報変更メソッド
+    /// </summary>
+    /// <param name="flag"></param>
     public void ChangeGameStart(bool flag)
     {
         _isGameStart = flag;
-    }
-
-    public void ChangeGameFirst(bool flag)
-    {
-        _isGameFirst = flag;
     }
 
     public void SetUp()
@@ -110,6 +108,12 @@ public class GameManager : MonoBehaviour
                 ChangeGameStart(false);
                 _winnerUI.IsWinnerUI(_isWinPlayer);
             }
+        }
+        else if(_isAction[_protectPlayerNum])
+        {
+            _isWinPlayer = false;
+            ChangeGameStart(false);
+            _winnerUI.IsWinnerUI(_isWinPlayer);
         }
     }
 

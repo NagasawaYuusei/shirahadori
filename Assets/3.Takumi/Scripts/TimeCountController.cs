@@ -6,30 +6,29 @@ using UnityEngine.UI;
 public class TimeCountController : MonoBehaviour
 {
     [SerializeField] Text _timeCountText;
-    bool _isGameStart;
-    bool _isFinishCount;
     float _firstTime = 3.9f;
     float _time;
-    bool _isStartText;
     [SerializeField] float _startTimeTextDenote;
     [SerializeField] GameObject _startButton;
 
+    bool _isGameStart;
+    bool _isFinishCount;
+
+
+
     public void Start()
     {
-        if (GameManager.Instance.IsGameFirst)
-            return;
         _timeCountText.enabled = true;
-        _timeCountText.text = "AreYouReady?";
+        _timeCountText.text = "èÄîıÇÕÇ¢Ç¢Ç©ÅH";
         _time = _firstTime;
-        GameManager.Instance.ChangeGameFirst(true);
-        _startButton.SetActive(true);
-        _isStartText = false;
-        _isFinishCount = false;
         _isGameStart = false;
     }
     void Update()
     {
-        if (_isGameStart && !_isFinishCount)
+        if (!_isGameStart)
+            return;
+
+        if (!_isFinishCount)
         {
             _time -= Time.deltaTime;
             int timeInt = (int)_time;
@@ -37,22 +36,20 @@ public class TimeCountController : MonoBehaviour
             if(_time < 1)
             {
                 _isFinishCount = true;
-                _isStartText = true;
                 _time = 0;
-                _timeCountText.text = "Start";
+                _timeCountText.text = "énÇﬂÅI";
             }
         }
-
-        if(_isStartText)
+        else if(_isFinishCount)
         {
             _time += Time.deltaTime;
-            if(_time >= _startTimeTextDenote)
+            if (_time >= _startTimeTextDenote)
             {
                 _time = 0;
                 _timeCountText.enabled = false;
-                _isStartText = false;
                 _isGameStart = false;
                 _isFinishCount = false;
+
                 GameManager.Instance.ChangeGameStart(true);
                 GameManager.Instance.PlayerModeNumSet();
             }
