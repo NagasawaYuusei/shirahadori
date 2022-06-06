@@ -15,6 +15,9 @@ public class DirectionManager : MonoBehaviour
     [SerializeField]
     GameObject m_slashEffect = default;
 
+    [SerializeField]
+    AudioClip m_seClip = default;
+
     [Header("Debug")]
     [SerializeField]
     bool m_isDebug = false;
@@ -51,6 +54,14 @@ public class DirectionManager : MonoBehaviour
         //GameManager.Instance.ChangeNowGame(false);
         //GameManager.Instance.WinUI();
         Debug.Log("èüé“UIï\é¶");
+    }
+
+    /// <summary>
+    /// SEçƒê∂
+    /// </summary>
+    public void PlaySE()
+    {
+        SoundManager.Instance.PlaySeByName(m_seClip.name);
     }
 
     IEnumerator DebugPlay()
