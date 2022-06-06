@@ -51,9 +51,9 @@ public class DirectionManager : MonoBehaviour
     public void ViewResult()
     {
         m_slashEffect.SetActive(false);
-        //GameManager.Instance.ChangeNowGame(false);
-        //GameManager.Instance.WinUI();
-        Debug.Log("ŸÒUI•\¦");
+        GameManager.Instance.ChangeNowGame(false);
+        GameManager.Instance.WinUI();
+        //Debug.Log("ŸÒUI•\¦");
     }
 
     /// <summary>

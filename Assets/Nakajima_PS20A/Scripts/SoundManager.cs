@@ -73,19 +73,19 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        if (SceneManager.GetActiveScene().name == "")
-        {
-            PlayBgmByName("Title");
-        }
-        else if (SceneManager.GetActiveScene().name == "")
-        {
-            PlayBgmByName("");
-        }
-        else if (SceneManager.GetActiveScene().name == "")
-        {
-            PlayBgmByName("");
-        }
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        //if (SceneManager.GetActiveScene().name == "")
+        //{
+        //    PlayBgmByName("Title");
+        //}
+        //else if (SceneManager.GetActiveScene().name == "")
+        //{
+        //    PlayBgmByName("");
+        //}
+        //else if (SceneManager.GetActiveScene().name == "")
+        //{
+        //    PlayBgmByName("");
+        //}
 
         currentVol = m_bgmAudioSource.volume;
     }
