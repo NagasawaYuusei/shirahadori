@@ -484,6 +484,7 @@ MonoBehaviour:
   m_director: {fileID: 213990134453314081}
   m_directionPanel: {fileID: 213990134315461964}
   m_slashEffect: {fileID: 213990133802180143}
+  m_seName: 
   m_isDebug: 1
 --- !u!114 &213990134844294032
 MonoBehaviour:
@@ -501,6 +502,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: cbfdb5fe2c2cddf438b2ae387b1297f3, type: 2}
     - {fileID: 11400000, guid: 1e38bbdab9947bc44977a61245d46a82, type: 2}
+    - {fileID: 11400000, guid: 8e19709a8b4fecc4fa2fff1945fb7ff2, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -521,6 +523,20 @@ MonoBehaviour:
         - m_Target: {fileID: 213990134844294033}
           m_TargetAssemblyTypeName: DIrectionManager, Assembly-CSharp
           m_MethodName: OffDirectionPanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 213990134844294033}
+          m_TargetAssemblyTypeName: DirectionManager, Assembly-CSharp
+          m_MethodName: PlaySE
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
