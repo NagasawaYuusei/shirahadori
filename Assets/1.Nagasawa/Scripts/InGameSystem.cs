@@ -6,13 +6,16 @@ public class InGameSystem : MonoBehaviour
 {
     void Update()
     {
-        if(GameManager.Instance.IsGameStart)
+        if(GameManager.Instance.IsNowGame)
         {
             GameManager.Instance.WhichPlayerWin();
         }
         else
         {
-            //GameManager.Instance.
+            if(Input.GetButtonDown("Jump"))
+            {
+
+            }
         }
     }
 }
