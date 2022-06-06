@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] WinnerUI _winnerUI;
     [SerializeField] TimeCountController _tcc;
 
+    int[] _playerWinCount = new int[2];
+
     //ƒJƒvƒZƒ‹‰»
     public bool IsGameStart => _isGameStart;
     public bool IsGameFirst => _isGameFirst;
