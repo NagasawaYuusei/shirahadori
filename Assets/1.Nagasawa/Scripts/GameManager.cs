@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("インスタンスを取得しやすいように")] public static GameManager Instance;
 
     [Tooltip("各プレイヤーのアクション")] bool[] _isAction = new bool[2];
-    [Tooltip("先行か後攻か")] PlayerMode[] _playerModes = new PlayerMode[] {PlayerMode.Attack, PlayerMode.Protect};
+    [Tooltip("先行か後攻か")] PlayerMode[] _playerModes = new PlayerMode[] {PlayerMode.Protect, PlayerMode.Attack};
     [Tooltip("攻撃するプレイヤーの番号")] int _attackPlayerNum;
     [Tooltip("防御するプレイヤーの番号")] int _protectPlayerNum;
     [Tooltip("false:Player1 true:Player2 各勝敗")] bool _isWinPlayer;
@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
 
     int[] _playerWinCount = new int[2];
     bool _playerMiss;
+
+    [SerializeField] SpriteRenderer _playerSprite;
+    [SerializeField] Sprite _attackWinSprite;
+    [SerializeField] Sprite _protectWinSprite;
+    [SerializeField] Sprite _defaultPlayerSprite;
+
+    bool a;
+    bool b;
 
     //カプセル化
     public bool IsNowGame => _isNowGame;
@@ -51,14 +59,12 @@ public class GameManager : MonoBehaviour
         _isNowGame = flag;
     }
 
-    public void SetUp()
+    public void ReStartSetUp()
     {
+        a = false;
+        b = false;
         PlayerActionClear();
-        ChangePlayerMode();
-        _winnerUI.Clear();
-        _tcc.enabled = true;
-        _tcc.Start();
-        Debug.Log("Player" + _attackPlayerNum + 1 + ":攻撃, Player" + _protectPlayerNum + 1 + ":防衛");
+        _playerSprite.sprite = _defaultPlayerSprite;
     }
 
     /// <summary>
@@ -84,6 +90,33 @@ public class GameManager : MonoBehaviour
     {
         _isAction[0] = false;
         _isAction[1] = false;
+        _time = 0;
+    }
+
+    public void PlayerSpriteChange()
+    {
+        if(!_isWinPlayer)
+        {
+            if(_attackPlayerNum == 0)
+            {
+                _playerSprite.sprite = _attackWinSprite;
+            }
+            else
+            {
+                _playerSprite.sprite = _protectWinSprite;
+            }
+        }
+        else
+        {
+            if (_attackPlayerNum == 1)
+            {
+                _playerSprite.sprite = _attackWinSprite;
+            }
+            else
+            {
+                _playerSprite.sprite = _protectWinSprite;
+            }
+        }
     }
 
     /// <summary>
@@ -91,27 +124,60 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void WhichPlayerWin()
     {
-        if(_isAction[_attackPlayerNum])
+        if(_isAction[_attackPlayerNum] && !a)
         {
             Debug.Log("AttackNow");
             _time += Time.deltaTime;
+            if(!b)
+            {
+                DirectionManager.Instance.OnPlayDirection();
+                b= true;
+            }
             if(_isAction[_protectPlayerNum])
             {
                 Debug.Log("ProtectNow");
-                _isWinPlayer = true;
+                if(_protectPlayerNum == 0)
+                {
+                    _isWinPlayer = false;
+                }
+                else
+                {
+                    _isWinPlayer = true;
+                }
+                PlayerSpriteChange();
+                a = true;
             }
             
             if(_time >= _attackTime)
             {
                 Debug.Log("OverTime");
-                _isWinPlayer = false;
+                if (_protectPlayerNum == 0)
+                {
+                    _isWinPlayer = true;
+                }
+                else
+                {
+                    _isWinPlayer = false;
+                }
+                DirectionManager.Instance.OnPlayDirection();
+                PlayerSpriteChange();
             }
         }
-        else if(_isAction[_protectPlayerNum])
+        else if(_isAction[_protectPlayerNum] && !a)
         {
             Debug.Log("ProtectPlayerMiss");
-            _isWinPlayer = false;
+            if (_protectPlayerNum == 0)
+            {
+                _isWinPlayer = true;
+            }
+            else
+            {
+                _isWinPlayer = false;
+            }
             _playerMiss = true;
+            GameManager.Instance.ChangeNowGame(false);
+            GameManager.Instance.WinUI();
+            SoundManager.Instance.PlaySeByName("Miss");
         }
     }
 

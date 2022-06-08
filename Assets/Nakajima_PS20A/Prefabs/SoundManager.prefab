@@ -175,10 +175,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_masterVolume: 1
-  m_bgmVolume: 0.3
+  m_bgmVolume: 0.7
   m_seVolume: 1
-  m_bgms: []
-  m_ses: []
+  m_bgms:
+  - {fileID: 8300000, guid: abf056aa6ff8eca41aeef5aa3b4fb54f, type: 3}
+  - {fileID: 8300000, guid: edf688478bd96674296f9d3a36b931c0, type: 3}
+  m_ses:
+  - {fileID: 8300000, guid: d5f427f0724b38c4bb1875a2b219c8a3, type: 3}
+  - {fileID: 8300000, guid: 1b691dfe506481c41b0db5ee4807d9bf, type: 3}
+  - {fileID: 8300000, guid: 3d8d681be0dc31e47a54b8a313c42dae, type: 3}
   m_bgmAudioSource: {fileID: 8246879516987505930}
   m_seAudioSource: {fileID: 8246879517597605891}
 --- !u!1 &8246879517597605917
@@ -227,7 +232,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InGameSystem : MonoBehaviour
 {
+    [SerializeField] TimeCountController _tcc;
+    [SerializeField] SceneController _sc;
     void Update()
     {
         if(GameManager.Instance.IsNowGame)
@@ -14,7 +16,12 @@ public class InGameSystem : MonoBehaviour
         {
             if(Input.GetButtonDown("Jump"))
             {
+                _tcc.GameStart();
+            }
 
+            if(Input.GetButtonDown("Cancel"))
+            {
+                _sc.ChangeScene("Title");
             }
         }
     }

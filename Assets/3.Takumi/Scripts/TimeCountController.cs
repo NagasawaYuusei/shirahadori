@@ -13,15 +13,24 @@ public class TimeCountController : MonoBehaviour
 
     bool _isGameStart;
     bool _isFinishCount;
-
-
+    bool _start;
+    [SerializeField] WinnerUI _winnerUI;
 
     public void Start()
     {
         _timeCountText.enabled = true;
-        _timeCountText.text = "èÄîıÇÕÇ¢Ç¢Ç©ÅH";
         _time = _firstTime;
         _isGameStart = false;
+        _startButton.SetActive(true);
+        if (!_start)
+        {
+            _timeCountText.text = "èÄîıÇÕÇ¢Ç¢Ç©ÅH";
+            _start = true;
+        }
+        else
+        {
+            _timeCountText.text = "";
+        }
     }
     void Update()
     {
@@ -60,5 +69,7 @@ public class TimeCountController : MonoBehaviour
     {
         _isGameStart = true;
         _startButton.SetActive(false);
+        _winnerUI.Clear();
+        GameManager.Instance.ReStartSetUp();
     }
 }
